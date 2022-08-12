@@ -1,32 +1,35 @@
 
 import React, { useEffect, useState } from "react";
+import { Card, Button } from "react-bootstrap";
 
 type props={
-    name:string[]
+    
+    user:{userName:String,email:String,userImg:String}[]
    
 }
 
-const UserDetails:React.FC<props>=({name})=>{
-    useEffect(()=>{
-        document.title=`You clicked ${timeClicked} times`;
-    });
-    const[timeClicked,setTimeClicked]=useState(0);
-    //const[count,setCount]=useState(0);
-    const[counter,setCounter]=useState({a:0,b:0});
-    // const onShow=()=>{
-    //     setCount(count+1);
-    // }
-    const showCount=(val: string)=>()=>{
-        setTimeClicked(timeClicked+1);
-        setCounter({...counter,[val]: counter['a']+1,});
-    }
+const UserDetails:React.FC<props>=({user})=>{
+
+console.log(user);
+
+const userList=user.map(user=>(
+    
+    <Card style={{ width: "18rem" }}>
+    <Card.Img variant="top" src="holder.js/100px180" />
+    <Card.Body>
+      <Card.Title>{user.userName}</Card.Title>
+      <Card.Text>
+        {user.email}
+      </Card.Text>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Body>
+  </Card>))
 
 return(
     <>
-    <label htmlFor="name">{name}{timeClicked}</label>
-    {/* <button onClick={onShow}>Show</button> */}
-    <button onClick={showCount("a")}>A count{counter.a}</button>
-    <button onClick={showCount("b")}>B count{counter.b}</button>
+    <div>
+      {userList}
+    </div>
 
 
     </>

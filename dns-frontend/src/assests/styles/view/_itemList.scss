@@ -1,0 +1,13 @@
+.list{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.btn{
+    background-color: transparent;
+    border-color: #ccc;
+  }
+  .card{
+    margin: 6px;
+  }

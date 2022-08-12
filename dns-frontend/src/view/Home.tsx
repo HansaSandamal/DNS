@@ -5,11 +5,19 @@ import Footer from "../layouts/Footer";
 import Catagory from "./Catagory";
 import Carousal from "../components/Carousal";
 import ItemList from "./ItemList";
+import AddItem from "../components/AddItem";
 
 
 const Home:React.FC=()=>{
-    const itemList=['item1','item2','item3','newitem1','newitem2','newitem3'];
-    
+    //const itemList=['item1','item2','item3','newitem1','Aitem','newitem2','Bitem','newitem3'];
+    const itemList=[
+        {
+        itemName:'itemName',description:'sld',itemCat:'item1',itemImg:'url'
+        },
+        {
+            itemName:'itemName2',description:'sld',itemCat:'tool',itemImg:'url2'
+        },
+];
     return(
         
         <React.Fragment>
@@ -23,6 +31,7 @@ const Home:React.FC=()=>{
                 </div>
                 {/* <Catagory/> */}
                 <ItemList items={itemList}/>
+                <AddItem/>
                 {/* <Admin/> */}
                 <Footer/>
             </div>
