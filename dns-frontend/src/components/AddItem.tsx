@@ -8,6 +8,8 @@ const AddItem: React.FC = () => {
   const [fileSelected, setFileSelected] = useState<File | undefined>();
   const [itemName, setItemName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const[loading,setLoading]=useState(false);
+  const[image,setImage]=useState("");
   const [catagory, setCatagory] = useState("");
   const handleSelect = (e: any) => {
     setCatagory(e.target.value);
@@ -21,16 +23,19 @@ const AddItem: React.FC = () => {
     setFileSelected(fileList[0]);
   };
 
-  const uploadFile = function (
+  const uploadFile =async  (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-  ) {
+  ) =>{
     if (fileSelected) {
       const formData = new FormData();
-      formData.append("image", fileSelected, fileSelected.name);
-      console.log(fileSelected.name);
-      console.log(itemName);
-      console.log(description);
-      console.log(catagory);
+      formData.append("file", fileSelected);
+      formData.append("upload_preset","dnshardware")
+      const res= await fetch('https://api.cloudinary.com/v1_1/dgtucgpop/image/upload',{
+        method:'POST',
+        body:formData
+      })
+      const file = await res.json();
+      console.log(file); 
     }
   };
 
@@ -43,6 +48,7 @@ const AddItem: React.FC = () => {
           <Form.Label>Item Name</Form.Label>
           <Form.Control
             type="text"
+            required
             onChange={(e) => {
               setItemName(e.target.value);
             }}
@@ -53,6 +59,7 @@ const AddItem: React.FC = () => {
           <Form.Label>Item Description</Form.Label>
           <Form.Control
             as="textarea"
+            required
             rows={3}
             onChange={(e) => {
               setDescription(e.target.value);
@@ -65,6 +72,7 @@ const AddItem: React.FC = () => {
             as="select"
             size="sm"
             value={catagory}
+            required
             onChange={(e) => {
               console.log(e.target.value);
               setCatagory(e.target.value);
@@ -80,7 +88,7 @@ const AddItem: React.FC = () => {
           <Form.Control
             type="file"
             accept="image/*"
-            
+            required
             name="photo"
             multiple={false}
             onChange={handleImageChange}
