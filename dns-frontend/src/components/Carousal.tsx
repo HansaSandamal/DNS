@@ -1,7 +1,8 @@
 import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import img from '../assests/images/cover.jpg';
-
+import img2 from '../assests/images/cover2.jpg';
+import img3 from '../assests/images/cover3.jpg';
 const Carousal:React.FC=()=> {
   return (
     <Carousel>
@@ -19,7 +20,7 @@ const Carousal:React.FC=()=> {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={img}
+          src={img2}
           alt="Second slide"
         />
 
@@ -31,7 +32,7 @@ const Carousal:React.FC=()=> {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src={img}
+          src={img3}
           alt="Third slide"
         />
 
