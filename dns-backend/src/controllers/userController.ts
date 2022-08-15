@@ -12,7 +12,11 @@ async function getAllUsers(req:any,res:any,next:any){
     .then((data)=>res.json(data))
     .catch((e)=>next(e));
 }
+
+
+
 export default {
     createUser,
-    getAllUsers,
+    getAllUsers
+    
 }

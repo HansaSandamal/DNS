@@ -12,7 +12,7 @@ const Login: React.FC = () => {
       .get("http://localhost:5000/user")
       .then(function (response) {
         getUsers(response.data);
-        console.log(users[0]);
+        
       })
       .catch(function (error) {
         console.log(error);

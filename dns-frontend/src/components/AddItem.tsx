@@ -21,6 +21,7 @@ const AddItem: React.FC = () => {
   const uploadFile = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
   ) => {
+    
     if (fileSelected) {
       const formData = new FormData();
       formData.append("file", fileSelected);
@@ -34,24 +35,32 @@ const AddItem: React.FC = () => {
         }
       );
       const file = await res.json();
-      console.log(file);
+      
       setImage(file.secure_url);
       setLoading(false);
-      sendDataBackend();
+      console.log(catagory);
+     
+      try{
+         axios.post("http://localhost:5000/item", {
+            itemName: itemName,
+            description: description,
+            catagory: catagory,
+            image: image
+          })
+          .then((response) => {
+            console.log(image);
+            console.log(response);
+          }).catch((exception) => {
+            console.log(exception);
+        });
+      }
+      catch(error){
+        console.error(error); 
+      }
+     
     }
   };
-  const sendDataBackend = async () => {
-    await axios
-      .post("http://localhost:5000/item", {
-        name: itemName,
-        description: description,
-        catagory: catagory,
-        image: image,
-      })
-      .then((response) => {
-        console.log(response);
-      });
-  };
+
   return (
     <React.Fragment>
       <Form>
@@ -89,9 +98,12 @@ const AddItem: React.FC = () => {
               setCatagory(e.target.value);
             }}
           >
-            <option value="1">Catagory-1</option>
-            <option value="2">Catagory-2</option>
-            <option value="3">Catagory-3</option>
+            <option value="1">Building</option>
+            <option value="2">Paint</option>
+            <option value="3">Lightning and Electrical</option>
+            <option value="4">Bathroom and Plumber</option>
+            <option value="5">Other</option>
+            
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
@@ -113,12 +125,7 @@ const AddItem: React.FC = () => {
           Add Item
         </Button>
       </Form>
-      {/* <div>
-    
-        {loading ?(<h1>Loading...</h1>)
-        :(<img src={image}/>)
-        }
-      </div> */}
+
     </React.Fragment>
   );
 };
