@@ -1,23 +1,36 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../layouts/Header";
-import Admin from "./Admin";
 import Footer from "../layouts/Footer";
-import Catagory from "./Catagory";
 import Carousal from "../components/Carousal";
 import ItemList from "./ItemList";
-import AddItem from "../components/AddItem";
+import img from '../assests/images/cover.jpg';
+import axios from "axios";
 
+type Items= {
+  
+    
+      itemName: String;
+      description: String;
+      catagory: String;
+      image: String;
+    
+  };
 
 const Home:React.FC=()=>{
-    //const itemList=['item1','item2','item3','newitem1','Aitem','newitem2','Bitem','newitem3'];
-    const itemList=[
-        {
-        itemName:'itemName',description:'sld',itemCat:'item1',itemImg:'url'
-        },
-        {
-            itemName:'itemName2',description:'sld',itemCat:'tool',itemImg:'url2'
-        },
-];
+const [itemList,setItemList]=useState<Items[]>([]);
+
+  useEffect(()=>{
+     axios.get("http://localhost:5000/item")
+      .then(res => {
+        
+   
+        setItemList(res.data);
+        
+       
+      });
+    
+  },[]);
+
     return(
         
         <React.Fragment>
@@ -27,11 +40,15 @@ const Home:React.FC=()=>{
                 </div> */}
                 <Carousal/>
                 <div className="about">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus optio mollitia delectus itaque quod accusantium fugiat omnis sequi. Recusandae, expedita iusto illum quae vel consequuntur rem veniam iste dolore quod!</p>
+
+                <img className="rounded-circle" alt="logo" src={img} width="100px" height="100px"/>
+                <p> 
+                We have a complete range of hardware products ready to deliver to your doorstep. Please contact us for the best prices.
+                </p>
                 </div>
                 {/* <Catagory/> */}
                 <ItemList items={itemList}/>
-                <AddItem/>
+                
                 {/* <Admin/> */}
                 <Footer/>
             </div>

@@ -38,11 +38,10 @@ const Footer:React.FC=()=>{
               <MDBCol md="3" lg="4" xl="3" className='mx-auto mb-4'>
                 <h6 className='text-uppercase fw-bold mb-4'>
                   <MDBIcon icon="gem" className="me-3" />
-                  Company name
+                  DNS Hardware
                 </h6>
                 <p>
-                  Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                  consectetur adipisicing elit.
+                We have a complete range of hardware products ready to deliver to your doorstep. Please contact us for the best prices.
                 </p>
               </MDBCol>
   
@@ -50,22 +49,22 @@ const Footer:React.FC=()=>{
                 <h6 className='text-uppercase fw-bold mb-4'>Products</h6>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Angular
+                    Building
                   </a>
                 </p>
                 <p>
                   <a href='#!' className='text-reset'>
-                    React
+                    Paint
                   </a>
                 </p>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Vue
+                    Lightning and Electrical
                   </a>
                 </p>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Laravel
+                    Bathroom and Plumber
                   </a>
                 </p>
               </MDBCol>
@@ -74,12 +73,12 @@ const Footer:React.FC=()=>{
                 <h6 className='text-uppercase fw-bold mb-4'>Useful links</h6>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Pricing
+                    About
                   </a>
                 </p>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Settings
+                  Contact Us
                   </a>
                 </p>
                 <p>
@@ -89,7 +88,7 @@ const Footer:React.FC=()=>{
                 </p>
                 <p>
                   <a href='#!' className='text-reset'>
-                    Help
+                  Terms and Conditions
                   </a>
                 </p>
               </MDBCol>
@@ -98,11 +97,11 @@ const Footer:React.FC=()=>{
                 <h6 className='text-uppercase fw-bold mb-4'>Contact</h6>
                 <p>
                   <MDBIcon icon="home" className="me-2" />
-                  New York, NY 10012, US
+                  Galle,  10012, SriLanka
                 </p>
                 <p>
                   <MDBIcon icon="envelope" className="me-3" />
-                  info@example.com
+                  dns123@gmail.com
                 </p>
                 <p>
                   <MDBIcon icon="phone" className="me-3" /> + 01 234 567 88
@@ -116,9 +115,9 @@ const Footer:React.FC=()=>{
         </section>
   
         <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)' }}>
-          © 2021 Copyright:
+          © 2022 Copyright:
           <a className='text-reset fw-bold' href='https://mdbootstrap.com/'>
-            MDBootstrap.com
+          Prices and offers are subject to change. DNS Hardware. All rights reserved.
           </a>
         </div>
       </MDBFooter>

@@ -13,6 +13,7 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^0.27.2",
     "bootstrap": "^5.2.0",
+    "font-awesome": "^4.7.0",
     "mdb-react-ui-kit": "^4.1.0",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",

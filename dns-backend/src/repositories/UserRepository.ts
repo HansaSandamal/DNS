@@ -18,5 +18,6 @@ const getAllUsers = async()=>{
 
 export default{
     createUser,
-    getAllUsers,
+    getAllUsers
+    
 }

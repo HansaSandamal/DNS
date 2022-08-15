@@ -13,7 +13,7 @@ const Header: React.FC = () => {
     <React.Fragment>
      
       
-    <Navbar bg="light" expand="lg" variant="light" >
+    <Navbar bg="dark" expand="lg"  className="navbar navbar-dark bg-dark" >
       <Container>
         <Navbar.Brand  href="#home">DNS</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,20 +1,15 @@
+import axios from "axios";
 import React, { useState } from "react";
-import {
-  Button,
-  Form,
-} from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const AddItem: React.FC = () => {
   const [fileSelected, setFileSelected] = useState<File | undefined>();
   const [itemName, setItemName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
-  const[loading,setLoading]=useState(false);
-  const[image,setImage]=useState("");
+  const [loading, setLoading] = useState(false);
+  const [image, setImage] = useState("");
   const [catagory, setCatagory] = useState("");
-  const handleSelect = (e: any) => {
-    setCatagory(e.target.value);
-    console.log(setCatagory);
-  };
+
   const handleImageChange = function (e: React.ChangeEvent<HTMLInputElement>) {
     const fileList = e.target.files;
 
@@ -23,26 +18,51 @@ const AddItem: React.FC = () => {
     setFileSelected(fileList[0]);
   };
 
-  const uploadFile =async  (
+  const uploadFile = async (
     e: React.MouseEvent<HTMLSpanElement, MouseEvent>
-  ) =>{
+  ) => {
+    
     if (fileSelected) {
       const formData = new FormData();
       formData.append("file", fileSelected);
-      formData.append("upload_preset","dnshardware")
-      const res= await fetch('https://api.cloudinary.com/v1_1/dgtucgpop/image/upload',{
-        method:'POST',
-        body:formData
-      })
+      formData.append("upload_preset", "dnshardware");
+      setLoading(true);
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/dgtucgpop/image/upload",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
       const file = await res.json();
-      console.log(file); 
+      
+      setImage(file.secure_url);
+      setLoading(false);
+      console.log(catagory);
+     
+      try{
+         axios.post("http://localhost:5000/item", {
+            itemName: itemName,
+            description: description,
+            catagory: catagory,
+            image: image
+          })
+          .then((response) => {
+            console.log(image);
+            console.log(response);
+          }).catch((exception) => {
+            console.log(exception);
+        });
+      }
+      catch(error){
+        console.error(error); 
+      }
+     
     }
   };
 
   return (
     <React.Fragment>
-
-
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Item Name</Form.Label>
@@ -78,9 +98,12 @@ const AddItem: React.FC = () => {
               setCatagory(e.target.value);
             }}
           >
-            <option value="1">Catagory-1</option>
-            <option value="2">Catagory-2</option>
-            <option value="3">Catagory-3</option>
+            <option value="1">Building</option>
+            <option value="2">Paint</option>
+            <option value="3">Lightning and Electrical</option>
+            <option value="4">Bathroom and Plumber</option>
+            <option value="5">Other</option>
+            
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
@@ -102,6 +125,7 @@ const AddItem: React.FC = () => {
           Add Item
         </Button>
       </Form>
+
     </React.Fragment>
   );
 };

@@ -3,6 +3,7 @@ import * as dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from 'cors';
 import router from './routes';
+import errorHandler from './middleware/errorHandler';
 const app = express();
 
 
@@ -35,6 +36,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/', router);
+//  error handler
+app.use(errorHandler());
+
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
