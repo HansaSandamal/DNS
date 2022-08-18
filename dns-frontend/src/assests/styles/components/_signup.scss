@@ -1,17 +1,41 @@
-form{
-    background-color: rgb(255, 187, 0);
-    padding: 10px;
+.backgroundSignUp{
+    background-image: url("../../images/contact.jpg");
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.9;
 }
 
-.form{
-    margin-left: 10px;
+
+
+.formSignUp{
+    display: flex;
+    padding: 10px;
     
 }
-.lbl{
-    justify-content: left ;
+
+.formGroupSignUp{
+    display: flex;
+    flex-direction: row;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 1%;
+
+  
+    
+}
+.lblSignUp{
+    width: 40%;
+    text-align: left;
+    color: aliceblue !important;
 }
 
 
 .form-control{
     justify-content: right;
+}
+
+.error{
+    color: red;
 }

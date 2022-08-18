@@ -1,84 +1,129 @@
 import axios from "axios";
-import React, { useState } from "react";
-import { Card, Button } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import GoogleButton from "react-google-button";
+import {
+  Card,
+  Button,
+  Form,
+  FormControl,
+  FormGroup,
+  FormLabel,
+} from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import "../config/firebaseConfig";
+
+import "firebase/compat/auth";
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from "firebase/auth";
 
 const Login: React.FC = () => {
-  const [userName, setUserName] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [users, getUsers] = useState([]);
-  const login = async () => {
-    axios
-      .get("http://localhost:5000/user")
-      .then(function (response) {
-        getUsers(response.data);
-        
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
+  const[log,setLog]=useState(false);
+  const[token,setToken]=useState("");
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data: any) => {
-    if(data.password==='admin')
-    console.log(data.email);
+  const onSubmit = (data: any, e: any) => {
+    e.preventDefault();
+    console.log(data);
+    
+    e.target.reset();
+  };
+
+  useEffect(() => {
+    const auth = getAuth();
+    auth.onAuthStateChanged((res) => {
+      
+      console.log(res);
+      setLog(true);
+      res?.getIdToken().then((token)=>{setToken(token)});
+      console.log(token);
+    });
+  }, []);
+
+  const signOutUser=async ()=>{
+    const auth = getAuth();
+    signOut(auth).then(() => {
+      setLog(false);
+  // Sign-out successful.
+    }).catch((error) => {
+  // An error happened.
+  const errorMessage = error.message;
+    });
+  }
+  const loginWithGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        if (credential) {
+          const token = credential.accessToken;
+          const user = result.user;
+          //window.location.href="/";
+          
+        }
+       
+        
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
   };
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          {...register("email", { required: true, pattern: /\S+@\S+\.\S+/ })}
-        />
-        {errors.email?.type === "required" && (
-          <span> This field is required</span>
-        )}
-        {errors.email?.type === "pattern" && <span> Invalid email</span>}
-        <input{...register("password",{required: true})}/>
-        {errors.password?.type === "required" && (
-          <span> This field is required</span>
-        )}
-        <button type="submit">submit</button>
-      </form>
-      <div>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setUserName(e.target.value);
-          }}
-        />
-        <br />
-        <label htmlFor="password">Password</label>
-        <input
-          type="text"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <br />
-        <input type="button" value="login" onClick={login} />
+     
+      <div className="backgroundLogin">
+      {log?(<button onClick={signOutUser}>SignOut</button>):(
+     <div>
+        <div className="text p-3">
+          <h1>Login</h1>
+        </div>
+        <Form onSubmit={handleSubmit(onSubmit)}>
+          <FormGroup className="formGroupSignUp">
+            <FormLabel className="lblSignUp">Email:</FormLabel>
+            <FormControl
+              {...register("email", {
+                required: true,
+                pattern: /\S+@\S+\.\S+/,
+              })}
+            />
+            {errors.email?.type === "required" && (
+              <span> This field is required</span>
+            )}
+            {errors.email?.type === "pattern" && <span> Invalid email</span>}
+          </FormGroup>
+          <FormGroup className="formGroupSignUp">
+            <FormLabel className="lblSignUp">Password:</FormLabel>
+            <FormControl {...register("password", { required: true })} />
+            {errors.password?.type === "required" && (
+              <span> This field is required</span>
+            )}
+          </FormGroup>
+          <FormGroup className="formGroupSignUp">
+            <FormControl className="btn btn-warning my-4 " type="submit" />
+            {errorMessage && <h4 className="error"> {errorMessage} </h4>}
+          </FormGroup>
+          <FormGroup className="formGroupSignUp">
+            <GoogleButton onClick={loginWithGoogle} />
+          </FormGroup>
+      
+        </Form>
+        </div>
+       )}
+
       </div>
-      {users.map((user) => {
-        return (
-          <Card className="itemCard" style={{ width: "18rem" }}>
-            <Card.Img variant="top" src="holder.js/100px180" />
-            <Card.Body>
-              <Card.Title>{user}</Card.Title>
-              <Card.Text>
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </Card.Text>
-              <Button variant="primary">Go somewhere</Button>
-            </Card.Body>
-          </Card>
-        );
-      })}
     </>
   );
 };
 export default Login;
-

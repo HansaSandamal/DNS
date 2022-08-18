@@ -35,9 +35,7 @@ const [itemList,setItemList]=useState<Items[]>([]);
         
         <React.Fragment>
             <div className="background">
-                <Header/>
-                {/* <div className="cover">                  
-                </div> */}
+                
                 <Carousal/>
                 <div className="about">
 
@@ -46,11 +44,10 @@ const [itemList,setItemList]=useState<Items[]>([]);
                 We have a complete range of hardware products ready to deliver to your doorstep. Please contact us for the best prices.
                 </p>
                 </div>
-                {/* <Catagory/> */}
+                
                 <ItemList items={itemList}/>
                 
-                {/* <Admin/> */}
-                <Footer/>
+                
             </div>
         </React.Fragment>
     )

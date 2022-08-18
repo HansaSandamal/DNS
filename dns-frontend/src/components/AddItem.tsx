@@ -63,20 +63,21 @@ const AddItem: React.FC = () => {
 
   return (
     <React.Fragment>
+    <div className="text"><h1>Add New item to System</h1></div>
       <Form>
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-          <Form.Label>Item Name</Form.Label>
+          <Form.Label className="text-white">Item Name</Form.Label>
           <Form.Control
             type="text"
             required
             onChange={(e) => {
               setItemName(e.target.value);
             }}
-            placeholder="enter Item Name"
+            placeholder="Enter Item Name"
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Item Description</Form.Label>
+          <Form.Label className="text-white">Item Description</Form.Label>
           <Form.Control
             as="textarea"
             required
@@ -86,8 +87,8 @@ const AddItem: React.FC = () => {
             }}
           />
         </Form.Group>
-        <Form.Group controlId="formBasicSelect">
-          <Form.Label>Select Catagory:</Form.Label>
+        <Form.Group controlId="formBasicSelect" className="mb-3">
+          <Form.Label className="text-white">Select Catagory:</Form.Label>
           <Form.Control
             as="select"
             size="sm"
@@ -107,7 +108,7 @@ const AddItem: React.FC = () => {
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Label>Upload Item Image</Form.Label>
+          <Form.Label className="text-white">Upload Item Image</Form.Label>
           <Form.Control
             type="file"
             accept="image/*"
@@ -118,7 +119,7 @@ const AddItem: React.FC = () => {
           />
         </Form.Group>
         <Button
-          className="btn btn-primary"
+          className="btn btn-warning my-3 mx-4"
           variant="contained"
           onClick={uploadFile}
         >

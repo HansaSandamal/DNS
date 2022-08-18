@@ -2,7 +2,7 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import img from '../assests/images/cover5.jpg';
 import img2 from '../assests/images/cover2.jpg';
-import img3 from '../assests/images/cover4.jpg';
+import img3 from '../assests/images/cover.jpg';
 
 const Carousal:React.FC=()=> {
   return (

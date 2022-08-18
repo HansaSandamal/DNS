@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddItem from "../components/AddItem";
+import Footer from "../layouts/Footer";
+import Header from "../layouts/Header";
 
 import UserDetails from "./UserDetails";
 
@@ -18,8 +20,12 @@ const Admin: React.FC = () => {
   ];
   return (
     <React.Fragment>
-      <AddItem />
-      <UserDetails user={user} />
+        
+    <div className="backgroundAdmin">
+    <AddItem />
+    </div>
+      
+      
     </React.Fragment>
   );
 };

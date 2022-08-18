@@ -2,22 +2,44 @@
 import { Document,Schema, model } from "mongoose";
 
 export interface User extends Document{
-    name:string,
-    password:string
+    
+    userName: string,
+    email:string,
+    password: string,
+    phoneNo:string,
+    adress:string,
+    firebaseID:string
 }
 
 export interface UserModel extends User{
 
 }
 const UserSchema=new Schema({
-    name:{
+    firebaseID: {
+        type: String,
+        required: true,
+    },
+    userName:{
+        type:String,
+        required:true
+    },
+    email:{
         type:String,
         required:true
     },
     password:{
         type:String,
         required:true
+    },
+    phoneNo:{
+        type:String,
+        required:true
+    },
+    adress:{
+        type:String,
+        required:true
     }
+
 
 });
 
