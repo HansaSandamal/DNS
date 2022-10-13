@@ -17,6 +17,7 @@
     "font-awesome": "^4.7.0",
     "mdb-react-ui-kit": "^4.1.0",
     "node-sass": "^7.0.1",
+    "ol": "^7.0.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^18.2.0",
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@types/bootstrap": "^5.2.0",
-    "@types/react-bootstrap": "^0.32.30"
+    "@types/react-bootstrap": "^0.32.30",
+    "react-openlayers": "^0.3.0"
   }
 }

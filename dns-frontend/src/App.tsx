@@ -11,6 +11,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Admin from './view/Admin';
 import Footer from './layouts/Footer';
 import Header from './layouts/Header';
+import Contact from './view/Contact';
+import About from './view/About';
 import"./config/firebaseConfig";
 
 
@@ -28,6 +30,8 @@ function App() {
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup/>}/>
             <Route path="/admin" element={<Admin/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+            <Route path="/about" element={<About/>}/>
           </Routes>
         </Router>
        <Footer/>

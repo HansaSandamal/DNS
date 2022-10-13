@@ -2,8 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Form, FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import Footer from "../layouts/Footer";
-import Header from "../layouts/Header";
+
 
 const Signup: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState("");
